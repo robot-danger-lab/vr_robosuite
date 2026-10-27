@@ -7,7 +7,7 @@ name = "vr-robosuite"
 version = "0.1.0"
 description = "Binocular Quest teleoperation and reproducible robosuite user-study trials"
 requires-python = ">=3.10,<3.13"
-dependencies = ["dual-kinova3-teleop", "xrt-devices[xr,recording]", "geo-kin-core", "robosuite==1.5.1", "mujoco==3.3.7", "numpy>=1.26,<2", "scipy>=1.11,<1.16", "h5py>=3.10", "pillow>=10"]
+dependencies = ["dual-kinova3-teleop", "eurola-xrt-devices[xr,recording]==0.1.2", "eurola-geo-kin-core==0.1.2", "robosuite==1.5.1", "mujoco==3.3.7", "numpy>=1.26,<2", "scipy>=1.11,<1.16", "h5py>=3.10", "pillow>=10"]
 
 [project.optional-dependencies]
 test = ["pytest>=8"]
@@ -19,8 +19,6 @@ vr-study = "vr_robosuite.study:main"
 
 [tool.uv.sources]
 dual-kinova3-teleop = {path = "external/dual_kinova3_teleop", editable = true}
-xrt-devices = {path = "external/dual_kinova3_teleop/external/XRT_devices", editable = true}
-geo-kin-core = {path = "external/dual_kinova3_teleop/external/geo_kin_core", editable = true}
 
 [tool.geo-kin]
 product = "dual_kinova3-psyonic"

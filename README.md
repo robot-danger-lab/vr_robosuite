@@ -1,5 +1,28 @@
 # VR Robosuite
 
+## Shared Python dependencies
+
+`geo_kin_core` and `xrt_devices` now come from versioned PyPI wheels, not Git
+submodules. The tested versions for this checkout are:
+
+```bash
+python -m pip install "eurola-geo-kin-core==0.1.2" "eurola-xrt-devices==0.1.2"
+```
+
+For an existing editable installation, run `python -m pip uninstall geo-kin-core xrt-devices`
+before installing the renamed packages, or use `uv sync` to reconcile the lockfile.
+
+Normal project installation (`uv sync` or `pip install` with the project and its
+local robot/simulator dependencies) selects these versions automatically. Imports
+and the `geo-kin-provision` command are unchanged. Other robot, simulator, and
+hardware submodules remain where needed; `--recurse-submodules` below is for those.
+The private `geo_kin` solver and its license are still supplied separately.
+
+For shared-library development, explicitly install matching source checkouts with
+`python -m pip install -e /path/to/geo_kin_core -e /path/to/XRT_devices` and run the
+venv's Python directly. A subsequent `uv sync` restores the released packages.
+
+
 Quest binocular teleoperation for the three SEW-Mimic-Teleop study tasks:
 **ExpCabinet**, **ExpGlassGap**, and **ExpHandover**. Both Dual Kinova 3
 **Robotiq** and **Psyonic Ability** variants run with robosuite task physics.

@@ -134,12 +134,12 @@ def run(args):
 def versions():
     from importlib.metadata import version,PackageNotFoundError
     result={}
-    for name in ['vr-robosuite','robosuite','mujoco','dual-kinova3-teleop','xrt-devices','geo-kin','mink']:
+    for name in ['vr-robosuite','robosuite','mujoco','dual-kinova3-teleop','eurola-xrt-devices','eurola-geo-kin-core','geo-kin','mink']:
         try:result[name]=version(name)
         except PackageNotFoundError:pass
     import subprocess
     root=Path(__file__).resolve().parents[1]
-    for label,path in [('revision',root),('dual_kinova_revision',root/'external/dual_kinova3_teleop'),('xrt_revision',root/'external/dual_kinova3_teleop/external/XRT_devices')]:
+    for label,path in [('revision',root),('dual_kinova_revision',root/'external/dual_kinova3_teleop')]:
         p=subprocess.run(['git','-C',str(path),'rev-parse','HEAD'],capture_output=True,text=True)
         if p.returncode==0:result[label]=p.stdout.strip()
     return result

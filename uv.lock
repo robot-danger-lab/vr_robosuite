@@ -325,25 +325,25 @@ name = "dual-kinova3-teleop"
 version = "0.1.0"
 source = { editable = "external/dual_kinova3_teleop" }
 dependencies = [
-    { name = "geo-kin-core", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "eurola-geo-kin-core", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "eurola-xrt-devices", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "mujoco", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "numpy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "scipy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "xrt-devices", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "geo-kin-core", editable = "external/dual_kinova3_teleop/external/geo_kin_core" },
+    { name = "eurola-geo-kin-core", specifier = "==0.1.2" },
+    { name = "eurola-xrt-devices", specifier = "==0.1.2" },
+    { name = "eurola-xrt-devices", extras = ["mediapipe"], marker = "extra == 'mediapipe'", specifier = "==0.1.2" },
+    { name = "eurola-xrt-devices", extras = ["xr", "recording"], marker = "extra == 'devices'", specifier = "==0.1.2" },
     { name = "mujoco", specifier = ">=3.3" },
     { name = "numpy" },
     { name = "pillow", marker = "extra == 'render'" },
     { name = "pyserial", marker = "extra == 'hardware'", specifier = ">=3.5" },
     { name = "pytest", marker = "extra == 'test'" },
     { name = "scipy" },
-    { name = "xrt-devices", editable = "external/dual_kinova3_teleop/external/XRT_devices" },
-    { name = "xrt-devices", extras = ["mediapipe"], marker = "extra == 'mediapipe'", editable = "external/dual_kinova3_teleop/external/XRT_devices" },
-    { name = "xrt-devices", extras = ["xr", "recording"], marker = "extra == 'devices'", editable = "external/dual_kinova3_teleop/external/XRT_devices" },
 ]
 
 [[package]]
@@ -402,6 +402,43 @@ epath = [
     { name = "fsspec", marker = "(python_full_version >= '3.11' and platform_machine == 'aarch64') or (python_full_version >= '3.11' and platform_system != 'Darwin') or (python_full_version >= '3.11' and sys_platform != 'linux')" },
     { name = "typing-extensions", marker = "(python_full_version >= '3.11' and platform_machine == 'aarch64') or (python_full_version >= '3.11' and platform_system != 'Darwin') or (python_full_version >= '3.11' and sys_platform != 'linux')" },
     { name = "zipp", marker = "(python_full_version >= '3.11' and platform_machine == 'aarch64') or (python_full_version >= '3.11' and platform_system != 'Darwin') or (python_full_version >= '3.11' and sys_platform != 'linux')" },
+]
+
+[[package]]
+name = "eurola-geo-kin-core"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "tomli", marker = "(python_full_version < '3.11' and platform_machine == 'aarch64') or (python_full_version < '3.11' and platform_system != 'Darwin') or (python_full_version < '3.11' and sys_platform != 'linux')" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7e/b8/6fadbd06ab78ed4db7fffee6e2cd7f446a61df1350c80fa9c5e24ebec671/eurola_geo_kin_core-0.1.2.tar.gz", hash = "sha256:12c8f38c169960e676019ec378542df4e70ce4ebf372ccd617af95d9022b52b4", size = 51043 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d6/4f/c0b5f5df9eac1b12be44ce914c4e94d69b4f98c5c5b78d809a5be364a7b5/eurola_geo_kin_core-0.1.2-py3-none-any.whl", hash = "sha256:07799c25c52340ab43e43cf3f3744416624366d6fe189841791753a61be63781", size = 48523 },
+]
+
+[[package]]
+name = "eurola-xrt-devices"
+version = "0.1.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "scipy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/41/a6/6e71c5e5dbf9efbab82463056077d1a75f4af2d319e1b1aa42b424eba9f1/eurola_xrt_devices-0.1.2.tar.gz", hash = "sha256:95564eed8da6321371caa7aed014a351380b28c0185bcbeb48a5378138d64d71", size = 124324 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/da/9f/7c4dd93236b006cf1e8f0e2470db332b80d03f9d60cd22bf92f7f6b5fcb6/eurola_xrt_devices-0.1.2-py3-none-any.whl", hash = "sha256:051fc75557cdd67a1bc1d96acd6b83ba5d3b66cf250b70018f5d3ecd2e5d446f", size = 92850 },
+]
+
+[package.optional-dependencies]
+recording = [
+    { name = "pandas", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+]
+xr = [
+    { name = "aiortc", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "fastapi", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "loguru", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "uvicorn", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
 ]
 
 [[package]]
@@ -478,27 +515,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/77/cd/9be253869fc42e764de7f3dedd6969af7d44ff9c3375214a3442a6f3fc08/fsspec-2026.9.0.tar.gz", hash = "sha256:0f08147951c8cb31d844c3547d631053b127863b60be04cf06e121333ee0e2fe", size = 333545 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl", hash = "sha256:8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f", size = 221738 },
-]
-
-[[package]]
-name = "geo-kin-core"
-version = "0.1.0"
-source = { editable = "external/dual_kinova3_teleop/external/geo_kin_core" }
-dependencies = [
-    { name = "numpy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "tomli", marker = "(python_full_version < '3.11' and platform_machine == 'aarch64') or (python_full_version < '3.11' and platform_system != 'Darwin') or (python_full_version < '3.11' and sys_platform != 'linux')" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "mink", marker = "extra == 'fallback'" },
-    { name = "mujoco", marker = "extra == 'viz'" },
-    { name = "numpy" },
-    { name = "pin", marker = "extra == 'spec-tools'", specifier = ">=4.0.0" },
-    { name = "quadprog", marker = "extra == 'fallback'" },
-    { name = "scipy", marker = "extra == 'fallback'" },
-    { name = "scipy", marker = "extra == 'spec-tools'" },
-    { name = "tomli", marker = "python_full_version < '3.11'", specifier = ">=2" },
 ]
 
 [[package]]
@@ -1560,7 +1576,8 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "dual-kinova3-teleop", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "geo-kin-core", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "eurola-geo-kin-core", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
+    { name = "eurola-xrt-devices", extra = ["recording", "xr"], marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "h5py", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "mujoco", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "numpy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
@@ -1568,7 +1585,6 @@ dependencies = [
     { name = "pillow", version = "13.0.0", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version >= '3.11' and platform_machine == 'aarch64') or (python_full_version >= '3.11' and platform_system != 'Darwin') or (python_full_version >= '3.11' and sys_platform != 'linux')" },
     { name = "robosuite", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
     { name = "scipy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "xrt-devices", extra = ["recording", "xr"], marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
 ]
 
 [package.optional-dependencies]
@@ -1583,7 +1599,8 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "dual-kinova3-teleop", editable = "external/dual_kinova3_teleop" },
-    { name = "geo-kin-core", editable = "external/dual_kinova3_teleop/external/geo_kin_core" },
+    { name = "eurola-geo-kin-core", specifier = "==0.1.2" },
+    { name = "eurola-xrt-devices", extras = ["xr", "recording"], specifier = "==0.1.2" },
     { name = "h5py", specifier = ">=3.10" },
     { name = "mink", marker = "extra == 'mink'" },
     { name = "mujoco", specifier = "==3.3.7" },
@@ -1593,7 +1610,6 @@ requires-dist = [
     { name = "quadprog", marker = "extra == 'mink'" },
     { name = "robosuite", specifier = "==1.5.1" },
     { name = "scipy", specifier = ">=1.11,<1.16" },
-    { name = "xrt-devices", extras = ["xr", "recording"], editable = "external/dual_kinova3_teleop/external/XRT_devices" },
 ]
 
 [[package]]
@@ -1603,42 +1619,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b3/8f/705086c9d734d3b663af0e9bb3d4de6578d08f46b1b101c2442fd9aecaa2/win32_setctime-1.2.0.tar.gz", hash = "sha256:ae1fdf948f5640aae05c511ade119313fb6a30d7eabe25fef9764dca5873c4c0", size = 4867 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e1/07/c6fe3ad3e685340704d314d765b7912993bcb8dc198f0e7a89382d37974b/win32_setctime-1.2.0-py3-none-any.whl", hash = "sha256:95d644c4e708aba81dc3704a116d8cbc974d70b3bdb8be1d150e36be6e9d1390", size = 4083 },
-]
-
-[[package]]
-name = "xrt-devices"
-version = "0.1.0"
-source = { editable = "external/dual_kinova3_teleop/external/XRT_devices" }
-dependencies = [
-    { name = "numpy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "scipy", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-]
-
-[package.optional-dependencies]
-recording = [
-    { name = "pandas", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-]
-xr = [
-    { name = "aiortc", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "fastapi", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "loguru", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-    { name = "uvicorn", marker = "platform_machine == 'aarch64' or platform_system != 'Darwin' or sys_platform != 'linux'" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiortc", marker = "extra == 'xr'", specifier = ">=1.9,<2" },
-    { name = "build", marker = "extra == 'test'" },
-    { name = "fastapi", marker = "extra == 'xr'", specifier = ">=0.110,<1" },
-    { name = "httpx", marker = "extra == 'test'", specifier = ">=0.27" },
-    { name = "loguru", marker = "extra == 'xr'", specifier = ">=0.7,<1" },
-    { name = "mediapipe", marker = "extra == 'mediapipe'", specifier = ">=0.10.20,<0.11" },
-    { name = "numpy", specifier = ">=1.24" },
-    { name = "opencv-contrib-python", marker = "extra == 'mediapipe'", specifier = ">=4.8,<5" },
-    { name = "pandas", marker = "extra == 'recording'", specifier = ">=2,<3" },
-    { name = "pytest", marker = "extra == 'test'", specifier = ">=8" },
-    { name = "scipy", specifier = ">=1.10" },
-    { name = "uvicorn", marker = "extra == 'xr'", specifier = ">=0.29,<1" },
 ]
 
 [[package]]
